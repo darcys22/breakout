@@ -8,35 +8,45 @@
   Game.prototype = {
 
     create: function () {
-      var x = this.game.width / 2
-        , y = this.game.height - 75;
 
-      this.player = this.add.sprite(x, y, 'block');
-      this.player.anchor.setTo(0.5, 0.5);
+      this.playerAdd();
+      this.gemAdd();
+
       this.input.onDown.add(this.onInputDown, this);
     },
 
     update: function () {
-      var x, y, cx, cy, dx, dy, angle, scale;
-
+      var x;
       x = this.input.position.x;
-      y = this.input.position.y;
-      cx = this.world.centerX;
-      cy = this.world.centerY;
+      this.player.x = x
 
-      angle = Math.atan2(y - cy, x - cx) * (180 / Math.PI);
-      this.player.angle = angle;
 
-      dx = x - cx;
-      dy = y - cy;
-      scale = Math.sqrt(dx * dx + dy * dy) / 100;
-
-      this.player.scale.x = scale * 0.6;
-      this.player.scale.y = scale * 0.6;
     },
 
     onInputDown: function () {
       this.game.state.start('menu');
+    },
+
+    gemAdd: function () {
+    },
+
+    playerAdd: function () {
+      var xpos = this.game.width / 2
+        , ypos = this.game.height - 175 * 0.3;
+
+      this.player = this.game.add.group();
+
+      this.player.x = xpos;
+      this.player.y = ypos;
+
+      this.player.create(0,0, 'block');
+      this.player.create(-101,0, 'block');
+      this.player.create(-101*2,0, 'block');
+      this.player.create(101,0, 'block');
+      this.player.create(101*2,0, 'block');
+
+      this.player.scale.x = 0.3;
+      this.player.scale.y = 0.3;
     }
 
   };

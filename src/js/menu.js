@@ -14,12 +14,12 @@
         , style = { font: '40px Arial', fill: '#bada55', align: 'center' };
 
 
-      this.titleTxt = this.add.text(x, y,'Breakout' );
+      this.titleTxt = this.add.text(x, y,'Breakout',style);
       this.titleTxt.align = 'center';
       this.titleTxt.x = this.game.width / 2 - this.titleTxt.textWidth / 2;
 
       y = y + this.titleTxt.height + 5;
-      this.startTxt = this.add.text(x, y, 'START');
+      this.startTxt = this.add.text(x, y, 'START',style);
       this.startTxt.align = 'center';
       this.startTxt.x = this.game.width / 2 - this.startTxt.textWidth / 2;
 

@@ -4,7 +4,7 @@ window.onload = function () {
   var game
     , ns = window['breakout'];
 
-  game = new Phaser.Game(640, 480, Phaser.AUTO, 'breakout-game');
+  game = new Phaser.Game(1136, 640, Phaser.AUTO, 'breakout-game');
   game.state.add('boot', ns.Boot);
   game.state.add('preloader', ns.Preloader);
   game.state.add('menu', ns.Menu);
