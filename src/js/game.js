@@ -8,9 +8,11 @@
   Game.prototype = {
 
     create: function () {
+      this.game.physics.startSystem(Phaser.Physics.NINJA);
 
       this.playerAdd();
       this.gemAdd();
+      this.ballAdd();
 
       this.input.onDown.add(this.onInputDown, this);
     },
@@ -19,34 +21,55 @@
       var x;
       x = this.input.position.x;
       this.player.x = x
-
-
     },
 
     onInputDown: function () {
-      this.game.state.start('menu');
+      //this.game.state.start('menu');
+      this.game.physics.ninja.enableCircle(this.ball, this.ball.width /2);
+      this.ball.body.gravityScale = 0.4;
+    },
+    
+    ballAdd: function () {
+      this.ball = this.game.add.sprite(this.game.width/2, this.game.height - 51*2, 'star');
     },
 
     gemAdd: function () {
+      this.gems = this.game.add.group();
+      this.gems.x = 50;
+      this.gems.y = 50;
+      this.gems.enableBody = true;
+      this.gems.physicsBodyType = Phaser.Physics.NINJA;
+
+
+      for (var i = 0; i < 5; i++)
+      {
+        for (var j = 0; j < 20; j++)
+        {
+          var g = this.gems.create(j*53,i*53,'blue');
+          g.body.gravityScale = 0;
+        }
+      }
+        
+
     },
 
     playerAdd: function () {
       var xpos = this.game.width / 2
-        , ypos = this.game.height - 175 * 0.3;
+        , ypos = this.game.height - 51;
 
       this.player = this.game.add.group();
 
       this.player.x = xpos;
       this.player.y = ypos;
 
-      this.player.create(0,0, 'block');
-      this.player.create(-101,0, 'block');
-      this.player.create(-101*2,0, 'block');
-      this.player.create(101,0, 'block');
-      this.player.create(101*2,0, 'block');
+      this.player.create(-15,0, 'block');
+      this.player.create(-30 -15,0, 'block');
+      this.player.create(-30*2-15,0, 'block');
+      this.player.create(-30*3-15,0, 'block');
+      this.player.create(30-15,0, 'block');
+      this.player.create(30*2-15,0, 'block');
+      this.player.create(30*3-15,0, 'block');
 
-      this.player.scale.x = 0.3;
-      this.player.scale.y = 0.3;
     }
 
   };

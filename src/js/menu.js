@@ -9,19 +9,15 @@
   Menu.prototype = {
 
     create: function () {
-      var x = this.game.width / 2
-        , y = this.game.height / 2
+      var x = this.game.width / 2 - 100
+        , y = this.game.height / 2 - 100
         , style = { font: '40px Arial', fill: '#bada55', align: 'center' };
 
 
       this.titleTxt = this.add.text(x, y,'Breakout',style);
-      this.titleTxt.align = 'center';
-      this.titleTxt.x = this.game.width / 2 - this.titleTxt.textWidth / 2;
 
-      y = y + this.titleTxt.height + 5;
+      y = y + 45;
       this.startTxt = this.add.text(x, y, 'START',style);
-      this.startTxt.align = 'center';
-      this.startTxt.x = this.game.width / 2 - this.startTxt.textWidth / 2;
 
       this.input.onDown.add(this.onDown, this);
     },

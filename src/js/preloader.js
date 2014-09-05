@@ -14,14 +14,13 @@
 
       this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
       this.load.setPreloadSprite(this.asset);
-      this.load.image('blue', 'assets/blue.png');
-      this.load.image('green', 'assets/green.png');
-      this.load.image('orange', 'assets/orange.png');
+      this.load.image('blue', 'assets/blue.png', 34, 57);
       this.load.image('star', 'assets/star.png');
       this.load.image('block', 'assets/block.png');
     },
 
     create: function () {
+      this.stage.backgroundColor = '#333333';
       this.asset.cropEnabled = false;
     },
 
