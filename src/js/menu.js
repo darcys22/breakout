@@ -10,15 +10,16 @@
 
     create: function () {
       var x = this.game.width / 2
-        , y = this.game.height / 2;
+        , y = this.game.height / 2
+        , style = { font: '40px Arial', fill: '#bada55', align: 'center' };
 
 
-      this.titleTxt = this.add.bitmapText(x, y, 'minecraftia', 'Example Game' );
+      this.titleTxt = this.add.text(x, y,'Breakout' );
       this.titleTxt.align = 'center';
       this.titleTxt.x = this.game.width / 2 - this.titleTxt.textWidth / 2;
 
       y = y + this.titleTxt.height + 5;
-      this.startTxt = this.add.bitmapText(x, y, 'minecraftia', 'START');
+      this.startTxt = this.add.text(x, y, 'START');
       this.startTxt.align = 'center';
       this.startTxt.x = this.game.width / 2 - this.startTxt.textWidth / 2;
 

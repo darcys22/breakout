@@ -9,9 +9,9 @@
 
     create: function () {
       var x = this.game.width / 2
-        , y = this.game.height / 2;
+        , y = this.game.height - 75;
 
-      this.player = this.add.sprite(x, y, 'player');
+      this.player = this.add.sprite(x, y, 'block');
       this.player.anchor.setTo(0.5, 0.5);
       this.input.onDown.add(this.onInputDown, this);
     },
