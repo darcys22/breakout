@@ -14,7 +14,7 @@
       this.gemAdd();
       this.ballAdd();
 
-      this.input.onDown.add(this.onInputDown, this);
+      this.input.onDown.addOnce(this.onInputDown, this);
     },
 
     update: function () {
@@ -22,25 +22,25 @@
       x = this.input.position.x;
       this.player.x = x;
 
-      //this.game.physics.ninja.collide(this.player, this.gems);
+      this.ball.body.circle.collideCircleVsTile(this.gems);
     },
 
     onInputDown: function () {
       //this.game.state.start('menu');
-      this.game.physics.ninja.enableCircle(this.ball, this.ball.width /2);
-      this.ball.body.gravityScale = 0.4;
       this.ball.body.moveUp(900);
     },
     
     ballAdd: function () {
       this.ball = this.game.add.sprite(this.game.width/2, this.game.height - 51*2, 'star');
+      this.game.physics.ninja.enableCircle(this.ball, this.ball.width /2);
+      this.ball.body.gravityScale = 0;
     },
 
     gemAdd: function () {
       this.gems = this.game.add.group();
       this.gems.x = 50;
       this.gems.y = 50;
-      this.game.physics.ninja.enableAABB(this.gems);
+      this.game.physics.ninja.enableTile(this.gems, 7);
       this.gems.enableBody = true;
 
 
@@ -49,7 +49,7 @@
         for (var j = 0; j < 20; j++)
         {
           var g = this.gems.create(j*53,i*53,'blue');
-          g.body.gravityScale = 0;
+          g.body.allowGravity = false;
         }
       }
         
@@ -73,10 +73,8 @@
       this.player.create(30*2-15,0, 'block');
       this.player.create(30*3-15,0, 'block');
 
-      this.game.physics.ninja.enableAABB(this.player);
-      this.player.enableBody = true;
-      this.player.body.gravityScale = 0;
-
+      this.game.physics.ninja.enableTile(this.player);
+      //this.player.setAll('body.gravityScale', 0);
 
     }
 
