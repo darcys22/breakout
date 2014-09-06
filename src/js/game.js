@@ -40,8 +40,8 @@
       this.gems = this.game.add.group();
       this.gems.x = 50;
       this.gems.y = 50;
+      this.game.physics.ninja.enableAABB(this.gems);
       this.gems.enableBody = true;
-      this.gems.physicsBodyType = Phaser.Physics.NINJA;
 
 
       for (var i = 0; i < 5; i++)
@@ -73,8 +73,10 @@
       this.player.create(30*2-15,0, 'block');
       this.player.create(30*3-15,0, 'block');
 
+      this.game.physics.ninja.enableAABB(this.player);
       this.player.enableBody = true;
-      this.player.physicsBodyType = Phaser.Physics.NINJA;
+      this.player.body.gravityScale = 0;
+
 
     }
 
