@@ -20,13 +20,16 @@
     update: function () {
       var x;
       x = this.input.position.x;
-      this.player.x = x
+      this.player.x = x;
+
+      //this.game.physics.ninja.collide(this.player, this.gems);
     },
 
     onInputDown: function () {
       //this.game.state.start('menu');
       this.game.physics.ninja.enableCircle(this.ball, this.ball.width /2);
       this.ball.body.gravityScale = 0.4;
+      this.ball.body.moveUp(900);
     },
     
     ballAdd: function () {
@@ -69,6 +72,9 @@
       this.player.create(30-15,0, 'block');
       this.player.create(30*2-15,0, 'block');
       this.player.create(30*3-15,0, 'block');
+
+      this.player.enableBody = true;
+      this.player.physicsBodyType = Phaser.Physics.NINJA;
 
     }
 
