@@ -87,7 +87,10 @@
     },
 
     playerCollide: function (ball, player) {
-      this.game.physics.arcade.moveToPointer(ball, -200);
+      var customPointer = new Phaser.Pointer(this.game, 2)
+      customPointer.y = this.game.height;
+      customPointer.x = this.game.input.activePointer.x;
+      this.game.physics.arcade.moveToPointer(ball, -900, customPointer);
     },
 
     gemCollide: function (ball, gem) {
