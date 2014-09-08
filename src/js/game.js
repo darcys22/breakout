@@ -24,12 +24,19 @@
 
       this.physics.arcade.collide(this.ball, this.gems, this.gemCollide, null, this);
       this.physics.arcade.collide(this.ball, this.player, this.playerCollide, null, this);
+
+      if (this.ball.body.x >= this.game.world.height) {
+        this.deathHandler();
+      }
     },
 
     onInputDown: function () {
-      //this.game.state.start('menu');
       this.ball.body.velocity.y = -900;
       this.ball.body.velocity.x = 90;
+    },
+
+    deathHandler: function () {
+      this.game.state.start('menu');
     },
     
     ballAdd: function () {
@@ -38,6 +45,7 @@
       this.ball.body.gravityScale = 0.01;
       this.ball.body.collideWorldBounds = true;
       this.ball.body.bounce.set(1);
+      this.ball.body.height = this.ball.body.width;
 
     },
 
@@ -81,7 +89,6 @@
 
       this.game.physics.arcade.enable(this.player);
       this.player.enableBody = true;
-      //this.player.body.immovable = true;
       this.player.setAll('body.immovable', true);
 
     },
