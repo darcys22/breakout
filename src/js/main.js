@@ -11,6 +11,6 @@ window.onload = function () {
   game.state.add('game', ns.Game);
 
   game.state.start('boot');
+
 };
 
-document.querySelector('canvas').style.cursor = none;

@@ -24,6 +24,8 @@
         this.game.scale.pageAlignHorizontally = true;
         this.game.scale.setScreenSize(true);
       }
+      document.querySelector('canvas').style.cursor = 'none';
+
       this.game.state.start('preloader');
     }
   };
