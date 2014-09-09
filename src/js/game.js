@@ -13,6 +13,9 @@
       this.playerAdd();
       this.gemAdd();
       this.ballAdd();
+      this.timerSetup();
+
+      this.score = 0;
 
       this.input.onDown.addOnce(this.onInputDown, this);
     },
@@ -33,10 +36,21 @@
     onInputDown: function () {
       this.ball.body.velocity.y = -900;
       this.ball.body.velocity.x = 90;
+      this.game.time.events.loop(Phaser.Timer.SECOND/2, this.updateHalfSec, this);
     },
 
     deathHandler: function () {
       this.game.state.start('menu');
+    },
+
+    timerSetup: function () {
+      this.scoreText = this.game.add.text(this.game.world.centerX * 1.5, 5, "Score = 0", { font: "20px Arial", fill: "#bada55"});
+
+    },
+
+    updateHalfSec: function () {
+      this.score += 1;
+      this.scoreText.setText("Score = " + this.score);
     },
     
     ballAdd: function () {
@@ -102,6 +116,8 @@
 
     gemCollide: function (ball, gem) {
       gem.kill();
+      this.score += 10;
+      this.scoreText.setText("Score = " + this.score);
     }
 
   };
