@@ -25,7 +25,7 @@
       this.physics.arcade.collide(this.ball, this.gems, this.gemCollide, null, this);
       this.physics.arcade.collide(this.ball, this.player, this.playerCollide, null, this);
 
-      if (this.ball.body.x >= this.game.world.height) {
+      if (this.ball.y >= this.game.world.height - this.ball.height) {
         this.deathHandler();
       }
     },
