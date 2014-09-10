@@ -19,6 +19,7 @@
     },
 
     create: function () {
+      document.querySelector('canvas').style.cursor = 'inherit';
       var x = this.game.width / 2 - 100
         , y = this.game.height / 2 - 100
         , style = { font: '40px Arial', fill: '#bada55', align: 'center' };
@@ -31,7 +32,7 @@
         var text = 'Score = ' + this.score
         this.add.text(x, y, text, style);
         y = y + 45;
-        var button = this.game.add.button(x,y,submit, actionOnClick, this, 1, 0);
+        var button = this.game.add.button(x,y, 'submit', this.actionOnClick, this, 1, 0);
       }
 
       this.input.onDown.add(this.onDown, this);

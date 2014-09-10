@@ -17,8 +17,7 @@
       this.load.image('blue', 'assets/blue.png');
       this.load.image('star', 'assets/star.png');
       this.load.image('block', 'assets/block.png');
-      this.load.image('submit', 'assets/submit.png');
-      this.load.image('submitover', 'assets/submitover.png');
+      this.load.spritesheet('submit', 'assets/submit.png', 225, 49);
     },
 
     create: function () {

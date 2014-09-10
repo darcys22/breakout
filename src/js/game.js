@@ -8,6 +8,7 @@
   Game.prototype = {
 
     create: function () {
+      document.querySelector('canvas').style.cursor = 'none';
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
       this.playerAdd();
