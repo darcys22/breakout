@@ -8,6 +8,16 @@
 
   Menu.prototype = {
 
+    init: function (score) {
+      if (!score){
+        this.score = 0
+      }
+      else
+        {
+          this.score = score
+        }
+    },
+
     create: function () {
       var x = this.game.width / 2 - 100
         , y = this.game.height / 2 - 100
@@ -16,8 +26,13 @@
 
       this.titleTxt = this.add.text(x, y,'Breakout',style);
 
-      y = y + 45;
-      this.startTxt = this.add.text(x, y, 'START',style);
+      if (this.score > 0){
+        y = y + 85;
+        var text = 'Score = ' + this.score
+        this.add.text(x, y, text, style);
+        y = y + 45;
+        var button = this.game.add.button(x,y,submit, actionOnClick, this, 1, 0);
+      }
 
       this.input.onDown.add(this.onDown, this);
     },
@@ -28,6 +43,10 @@
 
     onDown: function () {
       this.game.state.start('game');
+    },
+
+    actionOnClick: function () {
+      console.log("button pressed");
     }
   };
 

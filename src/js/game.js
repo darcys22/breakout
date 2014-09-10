@@ -40,7 +40,7 @@
     },
 
     deathHandler: function () {
-      this.game.state.start('menu');
+      this.game.state.start('menu', true, false, this.score);
     },
 
     timerSetup: function () {

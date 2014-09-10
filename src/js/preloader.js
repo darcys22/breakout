@@ -14,9 +14,11 @@
 
       this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
       this.load.setPreloadSprite(this.asset);
-      this.load.image('blue', 'assets/blue.png', 34, 57);
+      this.load.image('blue', 'assets/blue.png');
       this.load.image('star', 'assets/star.png');
       this.load.image('block', 'assets/block.png');
+      this.load.image('submit', 'assets/submit.png');
+      this.load.image('submitover', 'assets/submitover.png');
     },
 
     create: function () {
@@ -26,7 +28,7 @@
 
     update: function () {
       if (!!this.ready) {
-        this.game.state.start('menu');
+        this.game.state.start('menu', true, false, 0);
       }
     },
 
