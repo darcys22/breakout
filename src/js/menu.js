@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+  var spaceKey;
+
   function Menu() {
     this.titleTxt = null;
     this.startTxt = null;
@@ -20,6 +22,7 @@
 
     create: function () {
       document.querySelector('canvas').style.cursor = 'inherit';
+      spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       var x = this.game.width / 2 - 100
         , y = this.game.height / 2 - 100
         , style = { font: '40px Arial', fill: '#bada55', align: 'center' };
@@ -35,15 +38,16 @@
         var button = this.game.add.button(x,y, 'submit', this.actionOnClick, this, 1, 0);
       }
 
-      this.input.onDown.add(this.onDown, this);
     },
 
     update: function () {
+      if (spaceKey.isDown) { this.onDown() }
 
     },
 
     onDown: function () {
       this.game.state.start('game');
+      //Make this space bar to start actually
     },
 
     actionOnClick: function () {

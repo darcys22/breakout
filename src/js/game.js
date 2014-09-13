@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+  var spaceKey;
+
   function Game() {
     this.player = null;
   }
@@ -10,6 +12,8 @@
     create: function () {
       document.querySelector('canvas').style.cursor = 'none';
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
+      spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
 
       this.playerAdd();
       this.gemAdd();
@@ -29,6 +33,7 @@
       this.physics.arcade.collide(this.ball, this.gems, this.gemCollide, null, this);
       this.physics.arcade.collide(this.ball, this.player, this.playerCollide, null, this);
 
+      if (spaceKey.isDown) { this.onInputDown() }
       if (this.ball.y >= this.game.world.height - this.ball.height) {
         this.deathHandler();
       }
