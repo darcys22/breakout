@@ -21,8 +21,10 @@
       this.timerSetup();
 
       this.score = 0;
+      this.gemCount = 100;
 
       this.input.onDown.addOnce(this.onInputDown, this);
+      spaceKey.onDown.addOnce(this.onInputDown, this);
     },
 
     update: function () {
@@ -33,10 +35,10 @@
       this.physics.arcade.collide(this.ball, this.gems, this.gemCollide, null, this);
       this.physics.arcade.collide(this.ball, this.player, this.playerCollide, null, this);
 
-      if (spaceKey.isDown) { this.onInputDown() }
       if (this.ball.y >= this.game.world.height - this.ball.height) {
         this.deathHandler();
       }
+      if (this.gemCount == 0) {this.gemAdd()}
     },
 
     onInputDown: function () {
@@ -84,6 +86,7 @@
           var g = this.gems.create(j*53,i*53,'blue');
           g.body.allowGravity = false;
           g.body.immovable = true;
+          g.anchor.setTo(0.5, 0.5);
         }
       }
         
@@ -121,9 +124,13 @@
     },
 
     gemCollide: function (ball, gem) {
-      gem.kill();
+      gem.loadTexture('fire',0);
+      gem.animations.add('explode');
+      gem.animations.play('explode', 9, false, true);
+      gem.body = null;
       this.score += 10;
       this.scoreText.setText("Score = " + this.score);
+      this.gemCount -= 1;
     }
 
   };

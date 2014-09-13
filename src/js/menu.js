@@ -23,6 +23,7 @@
     create: function () {
       document.querySelector('canvas').style.cursor = 'inherit';
       spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+      spaceKey.onDown.addOnce(this.onDown, this);
       var x = this.game.width / 2 - 100
         , y = this.game.height / 2 - 100
         , style = { font: '40px Arial', fill: '#bada55', align: 'center' };
@@ -41,8 +42,6 @@
     },
 
     update: function () {
-      if (spaceKey.isDown) { this.onDown() }
-
     },
 
     onDown: function () {
