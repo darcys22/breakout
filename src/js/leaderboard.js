@@ -13,11 +13,11 @@
 
     init: function (score) {
       if (!score){
-        this.score = 0
+        this.score = 0;
       }
       else
         {
-          this.score = score
+          this.score = score;
         }
     },
 
@@ -41,10 +41,10 @@
         snap.forEach(function(userSnap) {
           y += 50;
           console.log('user %s is in position %d with %d points', userSnap.val().name, i, userSnap.val().score);
-          var text = i + ': ' + userSnap.val().name + " - " + userSnap.val().score;
+          var text = i + ': ' + userSnap.val().name + ' - ' + userSnap.val().score;
           passingthis.add.text(x, y, text, style);
           i++;
-          if ( i % LEADERBOARD_SIZE == 0) {
+          if ( i % LEADERBOARD_SIZE === 0) {
             x += 300;
             y = 70;
           }

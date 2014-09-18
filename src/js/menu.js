@@ -14,11 +14,11 @@
 
     init: function (score) {
       if (!score){
-        this.score = 0
+        this.score = 0;
       }
       else
         {
-          this.score = score
+          this.score = score;
         }
     },
 
@@ -36,10 +36,10 @@
       if (this.score > 0){
         y = y + 85;
         x = this.game.width / 3 + 50;
-        var text = 'Score = ' + this.score
+        var text = 'Score = ' + this.score;
         this.add.text(x, y, text, style);
         y = y + 45;
-        var button = this.game.add.button(x - 15,y, 'submit', this.actionOnClick, this, 1, 0);
+        this.game.add.button(x - 15,y, 'submit', this.actionOnClick, this, 1, 0);
       }
 
     },
@@ -53,13 +53,12 @@
 
     actionOnClick: function () {
       var newScore = this.score;
-      var name = prompt("Please enter your name");
+      var name = prompt('Please enter your name');
 
-      if (name.length === 0)
-      return;
+      if (name.length === 0) { return; }
 
       var date = new Date().toString();
-      var log = "Name: " + name + ", Score: " + newScore + " @ " + date;
+      var log = 'Name: ' + name + ', Score: ' + newScore + ' @ ' + date;
 
       var userScoreRef = rootRef.child(log.hashCode());
        
@@ -79,7 +78,7 @@
 
 String.prototype.hashCode = function() {
   var hash = 0, i, chr, len;
-  if (this.length == 0) return hash;
+  if (this.length === 0) { return hash };
   for (i = 0, len = this.length; i < len; i++) {
     chr   = this.charCodeAt(i);
     hash  = ((hash << 5) - hash) + chr;

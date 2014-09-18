@@ -37,8 +37,8 @@
 
       if (this.ball.y >= this.game.world.height - this.ball.height) {
         this.deathHandler();
-      }
-      if (this.gemCount == 0) {this.gemAdd()}
+      };
+      if (this.gemCount === 0) {this.gemAdd()};
     },
 
     onInputDown: function () {
@@ -52,13 +52,13 @@
     },
 
     timerSetup: function () {
-      this.scoreText = this.game.add.text(this.game.world.centerX * 1.5, 5, "Score = 0", { font: "20px Arial", fill: "#bada55"});
+      this.scoreText = this.game.add.text(this.game.world.centerX * 1.5, 5, 'Score = 0', { font: '20px Arial', fill: '#bada55'});
 
     },
 
     updateHalfSec: function () {
       this.score += 1;
-      this.scoreText.setText("Score = " + this.score);
+      this.scoreText.setText('Score = ' + this.score);
     },
     
     ballAdd: function () {
@@ -117,7 +117,7 @@
     },
 
     playerCollide: function (ball, player) {
-      var customPointer = new Phaser.Pointer(this.game, 2)
+      var customPointer = new Phaser.Pointer(this.game, 2);
       customPointer.y = this.game.height;
       customPointer.x = this.game.input.activePointer.x;
       this.game.physics.arcade.moveToPointer(ball, -900, customPointer);
@@ -129,7 +129,7 @@
       gem.animations.play('explode', 9, false, true);
       gem.body = null;
       this.score += 10;
-      this.scoreText.setText("Score = " + this.score);
+      this.scoreText.setText('Score = ' + this.score);
       this.gemCount -= 1;
     }
 
