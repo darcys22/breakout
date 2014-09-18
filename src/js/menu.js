@@ -52,28 +52,21 @@
 
     actionOnClick: function () {
       var newScore = this.score;
-      var name = "Sean";
-      var date = new Date().toString();
-      var log = "Name: " + name + ", Score: " + newScore + " @ " + date;
-
-      console.log(log);
-      console.log(log.hashCode());
+      var name = prompt("Please enter your name");
 
       if (name.length === 0)
       return;
-       
+
+      var date = new Date().toString();
+      var log = "Name: " + name + ", Score: " + newScore + " @ " + date;
+
       var userScoreRef = rootRef.child(log.hashCode());
        
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
       userScoreRef.setWithPriority({ name:name, score:newScore }, newScore);
+
+      this.game.state.start('leaderboard');
        
-      // Track the highest score using a transaction. A transaction guarantees that the code inside the block is
-      // executed on the latest data from the server, so transactions should be used if you have multiple
-      // clients writing to the same data and you want to avoid conflicting changes.
-      //highestScoreRef.transaction(function (currentHighestScore);
-      //if (currentHighestScore === null || newScore > currentHighestScore) 
-      //// The return value of this function gets saved to the server as the new highest score.
-      //return newScore;
       }
   };
 
