@@ -63,7 +63,7 @@
       var userScoreRef = rootRef.child(log.hashCode());
        
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-      userScoreRef.setWithPriority({ name:name, score:newScore }, newScore);
+      userScoreRef.setWithPriority({ name:name, score:newScore }, -newScore);
 
       this.game.state.start('leaderboard');
        

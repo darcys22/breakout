@@ -2,6 +2,7 @@
   'use strict';
 
   var spaceKey;
+  var rootRef = new Firebase('https://breakout.firebaseio.com/');
 
   function Leaderboard() {
     this.titleTxt = null;
@@ -21,23 +22,34 @@
     },
 
     create: function () {
+      var LEADERBOARD_SIZE = 10;
+        
       document.querySelector('canvas').style.cursor = 'inherit';
       spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       spaceKey.onDown.addOnce(this.onDown, this);
-      var x = this.game.width / 2 - 100
-        , y = this.game.height / 2 - 100
+
+      var x = 75
+        , y = 25
         , style = { font: '40px Arial', fill: '#bada55', align: 'center' };
+      this.titleTxt = this.add.text(x, y,'Leaderboard -- press spacebar to continue',style);
 
-
-      this.titleTxt = this.add.text(x, y,'Breakout#',style);
-
-      if (this.score > 0){
-        y = y + 85;
-        var text = 'Score = ' + this.score
-        this.add.text(x, y, text, style);
-        y = y + 45;
-      }
-
+      y = 70;
+      x = 150;
+      var passingthis = this;
+      rootRef.endAt().limit(LEADERBOARD_SIZE * 3).once('value', function(snap) {
+        var i = 1;
+        snap.forEach(function(userSnap) {
+          y += 50;
+          console.log('user %s is in position %d with %d points', userSnap.val().name, i, userSnap.val().score);
+          var text = i + ': ' + userSnap.val().name + " - " + userSnap.val().score;
+          passingthis.add.text(x, y, text, style);
+          i++;
+          if ( i % LEADERBOARD_SIZE == 0) {
+            x += 300;
+            y = 70;
+          }
+       });
+     });
     },
 
     update: function () {
@@ -59,3 +71,4 @@
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
+//
