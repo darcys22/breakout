@@ -53,7 +53,11 @@
 
     actionOnClick: function () {
       var newScore = this.score;
-      var name = prompt('Please enter your name');
+      var name = -1;
+      
+      while (name == -1 || (name != null && name.length > 5)) {
+        name = prompt('Please enter your name (Max 5 chars)');
+      }
 
       if (name.length === 0) { return; }
 
@@ -78,7 +82,7 @@
 
 String.prototype.hashCode = function() {
   var hash = 0, i, chr, len;
-  if (this.length === 0) { return hash };
+  if (this.length === 0) { return hash; }
   for (i = 0, len = this.length; i < len; i++) {
     chr   = this.charCodeAt(i);
     hash  = ((hash << 5) - hash) + chr;
